@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario Nutricional</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>FORMULARIO NUTRICIONAL</h1>
+      <h3>Lic. en Nutrición</h3>
+      <h3>Celeste B. Montero</h3>
+
+      <form id="formulario">
+        <!-- DATOS PERSONALES -->
+        <section>
+          <h2>Datos Personales</h2>
+
+          <label>Nombre y Apellido:</label>
+          <input
+            type="text"
+            name="nombre"
+            required
+            placeholder="Ingrese nombre y apellido"
+          />
+
+          <label>Fecha de nacimiento:</label>
+          <input type="date" name="fechaNacimiento" required />
+
+          <label>Ocupación:</label>
+          <textarea
+            name="ocupacion"
+            rows="4"
+            required
+            placeholder="Trabajas? Estudias? Me interesa conocer si tenes un estilo de vida sedentario o no más alla de tu actividad física"
+          ></textarea>
+
+          <label>Motivo de la consulta:</label>
+          <textarea
+            name="motivo"
+            rows="5"
+            required
+            placeholder="Querés mejorar hábitos? Disminuir masa adiposa? Aumentar masa muscular? En caso que ambas, necesito saber cuál de ambos objetivos es más prioritario"
+          ></textarea>
+        </section>
+
+        <!-- DATOS ANTROPOMÉTRICOS -->
+        <section>
+          <h2>Datos Antropométricos</h2>
+
+          <label>Peso (Kg):</label>
+          <input type="number" step="0.1" name="peso" required />
+
+          <label>Estatura (m):</label>
+          <input type="number" step="0.01" name="estatura" required />
+
+          <label>Peso habitual (Kg):</label>
+          <input type="number" step="0.1" name="pesoHabitual" />
+
+          <label>Peso más bajo (últimos 5 años):</label>
+          <input type="number" step="0.1" name="pesoBajo" />
+
+          <label>Peso más alto (últimos 5 años):</label>
+          <input type="number" step="0.1" name="pesoAlto" />
+        </section>
+
+        <!-- ANAMNESIS ALIMENTARIA -->
+        <section>
+          <h2>Anamnesis Alimentaria</h2>
+
+          <label>¿Qué comidas realizás habitualmente?</label>
+
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="comidasDia" value="Desayuno" />
+              Desayuno
+            </label>
+
+            <label class="checkbox-item">
+              <input
+                type="checkbox"
+                name="comidasDia"
+                value="Colación mañana"
+              />
+              Colación a la mañana
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" name="comidasDia" value="Almuerzo" />
+              Almuerzo
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" name="comidasDia" value="Colación tarde" />
+              Colación a la tarde
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" name="comidasDia" value="Merienda" />
+              Merienda
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" name="comidasDia" value="Cena" />
+              Cena
+            </label>
+          </div>
+          <label>Describi un día en tu alimentación:</label>
+          <textarea
+            name="comidas"
+            rows="10"
+            required
+            placeholder="Por ejemplo, DESAYUNO: 2 tostadas con 2 huevos / ALMUERZO: carne con ensalada / pastel de papa / milanesa de soja con brócoli / MERIENDA: yogur con granola / COLACION: 1 scoop de proteína / CENA: tarta de atún; este campo es fundamental para adecuar el plan a tus costumbres."
+          ></textarea>
+
+          <label>Alimentos que no te gustan:</label>
+          <input
+            type="text"
+            name="rechaza"
+            placeholder="Qué alimentos no te gustan?"
+          />
+
+          <label>Ingesta de líquido:</label>
+          <textarea
+            name="bebidas"
+            rows="3"
+            required
+            placeholder="Qué bebida tomas durante el día? Cuánto?"
+          ></textarea>
+
+          <label>Suplementación:</label>
+          <textarea
+            name="suplementos"
+            rows="2"
+            placeholder="Consumis suplementos? Cuáles?"
+          ></textarea>
+
+          <label>Intolerancias o alergias:</label>
+          <input type="text" name="alergias" placeholder="Tenés alguna?" />
+
+          <label>Cirugías previas:</label>
+          <input
+            type="text"
+            name="cirugias"
+            placeholder="Tuviste una cirugía? Cuál?"
+          />
+
+          <label>Patologías (colesterol elevado, hipotiroidismo, HTA):</label>
+          <input
+            type="text"
+            name="enfermedades"
+            placeholder="Tenes alguna patología?"
+          />
+
+          <label>Medicación actual:</label>
+          <input
+            type="text"
+            name="medicacion"
+            placeholder="Tomás alguna medicación?"
+          />
+
+          <label>Consumo de alcohol:</label>
+          <input
+            type="text"
+            name="alcohol"
+            required
+            placeholder="Consumís alcohol? Cuántas veces por semana? En qué ocasión?"
+          />
+        </section>
+
+        <!-- ACTIVIDAD FÍSICA -->
+        <section>
+          <h2>Actividad Física</h2>
+
+          <label>¿Realiza actividad física?</label>
+          <textarea
+            name="actividad"
+            rows="3"
+            required
+            placeholder="Qué actividad haces? Cuántas veces por semana? En qué horario?"
+          ></textarea>
+
+          <label>Si no realiza, ¿por qué?</label>
+          <textarea name="noActividad" rows="3"></textarea>
+        </section>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
