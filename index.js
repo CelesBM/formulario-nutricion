@@ -8,12 +8,13 @@ formulario.addEventListener("submit", function (e) {
 
   const datos = new FormData(formulario);
 
-  // ⚠️ Manejo especial para checkboxes (comidas del día)
+  // Manejo especial para checkboxes
   const comidasSeleccionadas = datos.getAll("comidasDia");
 
   const objetoDatos = Object.fromEntries(datos.entries());
   objetoDatos.comidasDia = comidasSeleccionadas.join(", ");
 
+  // ===== PDF =====
   let y = 10;
 
   doc.setFontSize(14);
@@ -33,7 +34,7 @@ formulario.addEventListener("submit", function (e) {
     }
   }
 
-  // 🟠 Nombre del paciente para el archivo
+  // Nombre del archivo
   let nombrePaciente = objetoDatos.nombre || "Paciente";
 
   nombrePaciente = nombrePaciente
@@ -41,32 +42,17 @@ formulario.addEventListener("submit", function (e) {
     .replace(/\s+/g, "_")
     .replace(/[^a-zA-Z0-9_]/g, "");
 
-  const nombreArchivo = `Formulario_${nombrePaciente}.pdf`;
+  doc.save(`Formulario_${nombrePaciente}.pdf`);
 
-  doc.save(nombreArchivo);
+  // ===== WHATSAPP =====
 
-  // 📲 FORMATEAMOS MENSAJE PARA WHATSAPP
-  const mensaje = `
-FORMULARIO NUTRICIONAL
+  let mensaje = "FORMULARIO NUTRICIONAL\n\n";
 
-👤 Nombre: ${objetoDatos.nombre}
-📅 Fecha de nacimiento: ${objetoDatos.fechaNacimiento}
-
-⚖️ Peso: ${objetoDatos.peso} kg
-📏 Estatura: ${objetoDatos.estatura} m
-🎯 Peso habitual: ${objetoDatos.pesoHabitual} kg
-
-🍽️ Comidas que realiza: ${objetoDatos.comidasDia}
-
-📝 Descripción alimentación:
-${objetoDatos.comidas}
-
-💧 Ingesta de líquidos:
-${objetoDatos.bebidas}
-
-🏋️ Actividad física:
-${objetoDatos.actividad}
-`;
+  for (const key in objetoDatos) {
+    if (objetoDatos[key] && objetoDatos[key].trim() !== "") {
+      mensaje += `${key.toUpperCase()}:\n${objetoDatos[key]}\n\n`;
+    }
+  }
 
   const numero = "5491155031316";
   const mensajeCodificado = encodeURIComponent(mensaje);
