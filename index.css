@@ -1,118 +1,155 @@
+/* ===== MOBILE FIRST ===== */
+
 body {
   margin: 0;
-  padding: 40px 20px;
   font-family: "Segoe UI", sans-serif;
-  background-color: #111;
-  color: #f5f5f5;
+  background-color: #f8f9fb;
+  color: #222;
 }
 
+/* CONTENEDOR */
 .container {
-  max-width: 850px;
+  max-width: 600px;
   margin: auto;
-  background: #1a1a1a;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 102, 0, 0.15);
+  padding: 25px 18px 60px 18px;
 }
 
+/* TITULOS */
 h1 {
   text-align: center;
-  font-size: 38px;
+  font-size: 28px;
   margin-bottom: 5px;
-  color: #ff6600;
+  color: #ff6a00;
 }
 
 h3 {
   text-align: center;
-  font-size: 25px;
   margin: 0;
-  font-weight: 300;
-  color: #ccc;
+  font-weight: 400;
+  color: #666;
 }
 
 section {
-  margin-top: 40px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #333;
+  margin-top: 45px;
 }
 
 h2 {
-  color: #ff6600;
+  font-size: 18px;
+  color: #ff6a00;
   margin-bottom: 20px;
-  font-size: 28px;
-  letter-spacing: 1px;
+  padding-left: 12px;
+  border-left: 5px solid #ff6a00;
 }
 
+/* LABELS */
 label {
   display: block;
-  margin-top: 15px;
-  font-weight: 500;
-  font-size: 20px;
+  margin-top: 22px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
+/* INPUTS Y TEXTAREAS */
 input,
 textarea {
   width: 100%;
-  margin-top: 6px;
-  padding: 15px;
-  border-radius: 6px;
-  border: 1px solid #333;
-  background-color: #222;
-  color: #fff;
-  font-size: 18px;
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 17px; /* grande para mobile */
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-sizing: border-box;
   transition: 0.3s ease;
 }
 
+/* PLACEHOLDER MÁS GRANDE Y LEGIBLE */
+input::placeholder,
+textarea::placeholder {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #888;
+}
+
+/* Para que el texto largo del placeholder se vea mejor */
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* FOCUS */
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #ff6600;
-  box-shadow: 0 0 5px rgba(255, 102, 0, 0.4);
+  border-color: #ff6a00;
+  box-shadow: 0 0 8px rgba(255, 106, 0, 0.2);
 }
 
+/* CHECKBOX GROUP */
 .checkbox-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 15px;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: #222;
-  padding: 8px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.checkbox-item:hover {
-  background-color: #2a2a2a;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  font-size: 16px;
 }
 
 .checkbox-item input {
-  accent-color: #ff6600;
-  width: auto;
+  width: 22px;
+  height: 22px;
+  accent-color: #ff6a00;
 }
 
+/* BOTÓN */
 button {
-  margin-top: 30px;
   width: 100%;
-  padding: 14px;
-  background-color: #ff6600;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 25px;
+  margin-top: 45px;
+  padding: 20px;
+  font-size: 18px;
   font-weight: bold;
+  border-radius: 14px;
+  border: none;
+  background-color: #ff6a00;
+  color: white;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
 button:hover {
-  background-color: #e65c00;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+  background-color: #e85f00;
+}
+
+/* Separador visual */
+section:not(:last-child) {
+  padding-bottom: 35px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== TABLET/DESKTOP ===== */
+@media (min-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }

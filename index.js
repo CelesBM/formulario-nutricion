@@ -7,7 +7,12 @@ formulario.addEventListener("submit", function (e) {
   const doc = new jsPDF();
 
   const datos = new FormData(formulario);
+
+  // ⚠️ Manejo especial para checkboxes (comidas del día)
+  const comidasSeleccionadas = datos.getAll("comidasDia");
+
   const objetoDatos = Object.fromEntries(datos.entries());
+  objetoDatos.comidasDia = comidasSeleccionadas.join(", ");
 
   let y = 10;
 
@@ -28,14 +33,43 @@ formulario.addEventListener("submit", function (e) {
     }
   }
 
-  // Descargar PDF automáticamente
-  doc.save("formulario_nutricional.pdf");
+  // 🟠 Nombre del paciente para el archivo
+  let nombrePaciente = objetoDatos.nombre || "Paciente";
 
-  // Abrir WhatsApp con mensaje
-  const numero = "5491155031316"; // formato internacional Argentina
-  const mensaje = encodeURIComponent(
-    "Hola Celeste, te envío mi formulario nutricional. Adjunto el PDF.",
-  );
+  nombrePaciente = nombrePaciente
+    .trim()
+    .replace(/\s+/g, "_")
+    .replace(/[^a-zA-Z0-9_]/g, "");
 
-  window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+  const nombreArchivo = `Formulario_${nombrePaciente}.pdf`;
+
+  doc.save(nombreArchivo);
+
+  // 📲 FORMATEAMOS MENSAJE PARA WHATSAPP
+  const mensaje = `
+FORMULARIO NUTRICIONAL
+
+👤 Nombre: ${objetoDatos.nombre}
+📅 Fecha de nacimiento: ${objetoDatos.fechaNacimiento}
+
+⚖️ Peso: ${objetoDatos.peso} kg
+📏 Estatura: ${objetoDatos.estatura} m
+🎯 Peso habitual: ${objetoDatos.pesoHabitual} kg
+
+🍽️ Comidas que realiza: ${objetoDatos.comidasDia}
+
+📝 Descripción alimentación:
+${objetoDatos.comidas}
+
+💧 Ingesta de líquidos:
+${objetoDatos.bebidas}
+
+🏋️ Actividad física:
+${objetoDatos.actividad}
+`;
+
+  const numero = "5491155031316";
+  const mensajeCodificado = encodeURIComponent(mensaje);
+
+  window.open(`https://wa.me/${numero}?text=${mensajeCodificado}`, "_blank");
 });
